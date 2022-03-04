@@ -5,12 +5,13 @@ from sys import version_info
 from time import time
 
 from config import (
+    START_IMG_URL,
     ALIVE_IMG,
     ALIVE_NAME,
     BOT_USERNAME,
     GROUP_SUPPORT,
     OWNER_USERNAME,
-    UPDATES_CHANNEL,
+    UPDATES_CHANNEL
 )
 from driver.decorators import check_blacklist
 from program import __version__
@@ -53,10 +54,6 @@ async def _human_time_duration(seconds):
             parts.append("{} {}{}".format(amount, unit, "" if amount == 1 else "s"))
     return ", ".join(parts)
 
-try:
-    from config import START_IMG_URL
-except:
-    START_IMG_URL = None
 
 @Client.on_message(
     command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
@@ -64,6 +61,7 @@ except:
 @check_blacklist()
 async def start_(c: Client, message: Message):
     BOT_NAME = me_bot.first_name
+    await message.reply_photo(START_IMG_URL)
     await message.reply_text(
         f"""💝 **ᴡᴇʟᴄᴏᴍᴇ🎉 {message.from_user.mention()} !**\n
 😁 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴘʟᴀʏ ᴍᴜsɪᴄ🎶 ᴀɴᴅ ᴠɪᴅᴇᴏ🎥 ᴏɴ ɢʀᴏᴜᴘs ᴛʜʀᴏᴜɢʜ ᴛʜᴇ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘ ᴠɪᴅᴇᴏ ᴄʜᴀᴛ!**
@@ -83,7 +81,7 @@ async def start_(c: Client, message: Message):
                 [InlineKeyboardButton("💗 ʙᴀsɪᴄ ɢᴜɪᴅᴇ ʀᴀ ɴɪʙʙᴀ 🤍", callback_data="user_guide")],
                 [
                     InlineKeyboardButton("✅ sᴀɴᴛʜᴜ ᴄᴏᴍᴍᴀɴᴅs 💘", callback_data="command_list"),
-                    InlineKeyboardButton("🔰 ᴅᴏɴᴀᴛᴇ ʀᴀ ɴɪʙʙᴀ 🔰", url=f"https://t.me/{OWNER_USERNAME}"),
+                    InlineKeyboardButton("🔰 ᴅᴏɴᴀᴛᴇ ʀᴀ ɴɪʙʙᴀ 🔰", url=f"https://t.me/{OWNER_USERNAME}")
                 ],
                 [
                     InlineKeyboardButton(
@@ -91,12 +89,12 @@ async def start_(c: Client, message: Message):
                     ),
                     InlineKeyboardButton(
                         "💝 sᴀɴᴛʜᴜ ɴᴇᴛᴡᴏʀᴋ 🤎", url=f"https://t.me/{UPDATES_CHANNEL}"
-                    ),
+                    )
                 ],
-                [InlineKeyboardButton("❤ ʏᴏᴜᴛᴜʙᴇ 💚", url="https://youtube.com/channel/UC7QMr8IDR65vciXrwx4XLiQ"
-                [
+                [InlineKeyboardButton("❤ ʏᴏᴜᴛᴜʙᴇ 💚", url="https://youtube.com/channel/UC7QMr8IDR65vciXrwx4XLiQ",
                     InlineKeyboardButton(
-                        "🥺 ʀᴇᴘᴏ", callback_data="repo"), 
+                        "🥺 ʀᴇᴘᴏ", callback_data="repo"
+                    ), 
                 ] 
             ] 
         ), 
@@ -119,7 +117,7 @@ async def help(c: Client, message: Message):
         [
             [
                 InlineKeyboardButton(
-                                       "😟ᴘʟᴇᴀsᴇ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ💘", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                                       "😟ᴘʟᴇᴀsᴇ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ💘", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
                 )
             ],
             [
@@ -150,7 +148,7 @@ async def help(c: Client, message: Message):
     )
         
 @Client.on_message(
-    command(["ghelp", f"ghelp@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+    command(["/help", f"/help@{BOT_USERNAME}"]) & filters.group & ~filters.edited
 )
 @check_blacklist()
 async def ghelp(c: Client, message: Message):
@@ -166,7 +164,7 @@ async def ghelp(c: Client, message: Message):
         [
             [
                 InlineKeyboardButton(
-                                       "😟ᴘʟᴇᴀsᴇ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ💘", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                                       "😟ᴘʟᴇᴀsᴇ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ💘", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
                 )
             ],
             [

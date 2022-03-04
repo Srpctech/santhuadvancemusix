@@ -2,6 +2,7 @@ import os
 from os import getenv
 from dotenv import load_dotenv
 
+START_IMAGE = "https://camo.githubusercontent.com/05e1f71fec76a5067c2becc6dfcd9cb593e6b9c023ead6f17e69cc709be40368/68747470733a2f2f74656c656772612e70682f66696c652f3631613565333134383561373765373732363734302e6a7067"
 admins = {}
 load_dotenv()
 
@@ -36,4 +37,4 @@ IMG_3 = getenv("IMG_3", "https://te.legra.ph/file/7569d601b34af1bb14570.png")
 IMG_4 = getenv("IMG_4", "https://te.legra.ph/file/35700a88d56fd6064822a.png")
 IMG_5 = getenv("IMG_5", "https://telegra.ph/file/63300139d232dc12452ab.png")
 ALIVE_IMG = getenv("ALIVE_IMG", "https://telegra.ph/file/19814cb8155e0a06a1da9.jpg")
-START_IMG_URL = getenv("START_IMG_URL", None)
+START_IMG_URL = getenv("START_IMG_URL", START_IMAGE)
